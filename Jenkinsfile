@@ -12,17 +12,9 @@ volumes: [
 ], imagePullSecrets: [ 'docker-registry-credentials' ]) {
     node(label) {
         stage('Build') {
-            git 'https://github.com/automation-liberation/api-gateway.git'
+            git 'https://github.com/automation-liberation/mission-control.git'
             script {
                 properties = readYaml file: "build-properties.yaml"
-            }
-            container('python') {
-                sh 'pip install -r requirements.txt'
-            }
-        }
-        stage('Test') {
-            container('python') {
-                sh 'pytest --cov=.'
             }
         }
         stage('Push Docker Image') {
