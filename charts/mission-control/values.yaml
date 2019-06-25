@@ -1,0 +1,27 @@
+# Default values for mission-control.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: irori.johansson.tech/automation-liberation/mission-control
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: docker-registry-credentials
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 5672
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
