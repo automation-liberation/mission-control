@@ -11,7 +11,7 @@ def start(mission_id):
     mission = Mission.objects(id=mission_id).first()
     steps = MissionStep.objects.filter(mission=mission).order_by("order")
     for step in steps:
-        requests.get(f"http://localhost:5000/tellocontrol/control/{step.command}")
+        requests.get(f"http://api.johansson.tech/tellocontrol/control/{step.command}")
         if step.sleep:
             time.sleep(step.sleep)
 
